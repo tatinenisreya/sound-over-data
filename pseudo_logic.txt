@@ -1,0 +1,38 @@
+Javascript based web project:
+    html files - Content (Base)
+    css files - Style
+    js files - Computations
+
+
+Data over sound:
+    Audible
+        20 - 20k frequency
+        20 - 17/18k freq
+    Inaudible
+        <20 , >20k
+        19k - ?
+
+-----
+    Trasmitter                  ||          Reciever
+    Text -> Compute -> Sound -------- Mic/Audio -> Compute -> Text
+
+Transmitter pseudo logic:
+    Text -> Binary conversion (0, 1)
+    Binary + CRC -> transmission safe binary output
+    safe-output -> Convert to audio(frequency 14k/19k) (javascript native libraries) - libquiet library
+    Play
+
+Reciever pseudo logic:
+    Audio -> Binary (data + crc + noise)
+    Binary through CRC -> Data (binary)
+    Binary to text conversion -> text
+    html display
+
+
+-------------------
+    'hello world' -> 010 -> 110001001010101001     Mic
+    CRC - Cyclic Redundancy Check
+    'hello world' -> 010 -> CRC apply -> 0111000110100 010 001000010001100110 ->
+    0111000110100 010 001000010001100110 + Noise -->   001001 0111000110100 010 001000010001100110 1100010
+    Rec -> 001001 0111000110100 010 001000010001100110 1100010 -> 010
+
